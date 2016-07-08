@@ -6,6 +6,32 @@ import javax.swing.*;
 public class GUIMenu
 {
 	private JFrame frame;
+	private JPanel contentPane;
+	
+	// radio buttons and button group
+	private JRadioButton regularCrustButton;
+	private JRadioButton thinCrustButton;
+	private JRadioButton handCrustButton;
+	private JRadioButton deepCrustButton;
+	private ButtonGroup crustButtonGroup;
+
+	// check boxes
+	private JCheckBox pepperoniBox;
+	private JCheckBox sausageBox;
+	private JCheckBox cheeseBox;
+	private JCheckBox pepperBox;
+	private JCheckBox onionBox;
+	private JCheckBox mushroomBox;
+	private JCheckBox oliveBox;
+	private JCheckBox anchovyBox;
+
+	// text fields
+	private JTextField breadSticksText;
+	private JTextField buffaloWingsText;
+	private JTextField nameText;
+	private JTextField addressText;
+	private JTextField cityText;
+	
 	public static void main (String[] args)
 	{
 		GUIMenu gui = new GUIMenu();
@@ -18,7 +44,9 @@ public class GUIMenu
 		Container contentPane = frame.getContentPane();
 		
 		makeMenus();
-		frame.setSize(300, 300);
+		makeContent();
+		
+		frame.setSize(540, 700);
 		frame.setVisible(true);
 	}
 	private void makeMenus()
@@ -85,9 +113,83 @@ public class GUIMenu
 		
 		return menu;
 	}
-        
-       
-
+	
+	private void makeContent()
+	{
+		contentPane = (JPanel)frame.getContentPane();
+		contentPane.setLayout(new BorderLayout(6,6));
+		
+		makeNorthRegion();
+		makeWestRegion();
+		makeCenterRegion();
+	}
+	
+	private void makeNorthRegion()
+	{
+		JLabel imgLabel = new JLabel(new ImageIcon("L08-06.jpg"), JLabel.CENTER);
+		contentPane.add(imgLabel, BorderLayout.NORTH);
+	}
+	
+	private void makeWestRegion()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBorder(BorderFactory.createTitledBorder("Choose a Crust"));
+		crustButtonGroup = new ButtonGroup();
+		
+		regularCrustButton = new JRadioButton("Regular Crust", true);
+		crustButtonGroup.add(regularCrustButton);
+		panel.add(regularCrustButton);
+		
+		thinCrustButton = new JRadioButton("Thin Crust", false);
+		crustButtonGroup.add(thinCrustButton);
+		panel.add(thinCrustButton);
+		
+		handCrustButton = new JRadioButton("Hand-Tossed Crust", false);
+		crustButtonGroup.add(handCrustButton);
+		panel.add(handCrustButton);
+		
+		deepCrustButton = new JRadioButton("Deep Dish Crust", false);
+		crustButtonGroup.add(deepCrustButton);
+		panel.add(deepCrustButton);
+		
+		contentPane.add(panel, BorderLayout.WEST);
+	}
+	
+	private void makeCenterRegion()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBorder(BorderFactory.createTitledBorder("Select Toppings"));
+		
+		pepperoniBox = new JCheckBox("Pepperoni", false);
+		panel.add(pepperoniBox);
+		
+		sausageBox = new JCheckBox("Sausage", false);
+		panel.add(sausageBox);
+		
+		cheeseBox = new JCheckBox("Cheese", false);
+		panel.add(cheeseBox);
+		
+		pepperBox = new JCheckBox("Pepperoncini", false);
+		panel.add(pepperBox);
+		
+		onionBox = new JCheckBox("Onions", false);
+		panel.add(onionBox);
+		
+		mushroomBox = new JCheckBox("Mushrooms", false);
+		panel.add(mushroomBox);
+		
+		oliveBox = new JCheckBox("Olives", false);
+		panel.add(oliveBox);
+		
+		anchovyBox = new JCheckBox("Anchovies", false);
+		panel.add(anchovyBox);
+		
+		contentPane.add(panel, BorderLayout.CENTER);
+	}
+      
+	
 	
 	private class newListener implements ActionListener //program listens for click on New menu option
 	{
