@@ -28,6 +28,9 @@ public class GUIMenu
 	// text fields
 	private JTextField breadSticksText;
 	private JTextField buffaloWingsText;
+	private JTextField caesarSaladText;
+	private JTextField houseSaladText;
+	private JTextField cinnaSticksText;
 	private JTextField nameText;
 	private JTextField addressText;
 	private JTextField cityText;
@@ -46,7 +49,7 @@ public class GUIMenu
 		makeMenus();
 		makeContent();
 		
-		frame.setSize(540, 700);
+		frame.setSize(540, 500);
 		frame.setVisible(true);
 	}
 	private void makeMenus()
@@ -122,6 +125,7 @@ public class GUIMenu
 		makeNorthRegion();
 		makeWestRegion();
 		makeCenterRegion();
+		makeEastRegion();
 	}
 	
 	private void makeNorthRegion()
@@ -158,11 +162,13 @@ public class GUIMenu
 	
 	private void makeCenterRegion()
 	{
+		//create a region with check boxes for toppings selection
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setBorder(BorderFactory.createTitledBorder("Select Toppings"));
 		
-		pepperoniBox = new JCheckBox("Pepperoni", false);
+		pepperoniBox = new JCheckBox("Pepperoni", false); 
+		//false means it remains unchecked until user checks it
 		panel.add(pepperoniBox);
 		
 		sausageBox = new JCheckBox("Sausage", false);
@@ -186,9 +192,66 @@ public class GUIMenu
 		anchovyBox = new JCheckBox("Anchovies", false);
 		panel.add(anchovyBox);
 		
+		//add checkBox panel to content pane in the center region of the app
 		contentPane.add(panel, BorderLayout.CENTER);
 	}
       
+	private void makeEastRegion()
+	{
+		//sets up side orders with quantities in East region
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//vertical panel
+		panel.setBorder(BorderFactory.createTitledBorder("Sides (Enter Quantity)"));
+		panel.setPreferredSize(new Dimension(150,0));
+		
+		JPanel smallPanel = new JPanel();
+		smallPanel.setLayout(new BoxLayout(smallPanel,BoxLayout.X_AXIS));//horizontal panel
+		breadSticksText = new JTextField("", 2);
+		breadSticksText.setMaximumSize(new Dimension(20,24));
+		smallPanel.add(breadSticksText);
+		smallPanel.add(new JLabel(" Bread Sticks"));
+		smallPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel.add(smallPanel);
+		
+		smallPanel = new JPanel();
+		smallPanel.setLayout(new BoxLayout(smallPanel,BoxLayout.X_AXIS));//horizontal panel
+		buffaloWingsText = new JTextField("", 2);
+		buffaloWingsText.setMaximumSize(new Dimension(20,24));
+		smallPanel.add(buffaloWingsText);
+		smallPanel.add(new JLabel(" Buffalo Wings"));
+		smallPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel.add(smallPanel);
+		
+		smallPanel = new JPanel();
+		smallPanel.setLayout(new BoxLayout(smallPanel,BoxLayout.X_AXIS));
+		caesarSaladText = new JTextField("", 2);
+		caesarSaladText.setMaximumSize(new Dimension(20,24));
+		smallPanel.add(caesarSaladText);
+		smallPanel.add(new JLabel(" Caesar Salad"));
+		smallPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel.add(smallPanel);
+
+		smallPanel = new JPanel();
+		smallPanel.setLayout(new BoxLayout(smallPanel,BoxLayout.X_AXIS));
+		houseSaladText = new JTextField("", 2);
+		houseSaladText.setMaximumSize(new Dimension(20,24));
+		smallPanel.add(houseSaladText);
+		smallPanel.add(new JLabel(" House Salad"));
+		smallPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel.add(smallPanel);
+		
+		smallPanel = new JPanel();
+		smallPanel.setLayout(new BoxLayout(smallPanel,BoxLayout.X_AXIS));
+		cinnaSticksText = new JTextField("", 2);
+		cinnaSticksText.setMaximumSize(new Dimension(20,24));
+		smallPanel.add(cinnaSticksText);
+		smallPanel.add(new JLabel(" Cinnamon Sticks"));
+		smallPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel.add(smallPanel);
+		
+		contentPane.add(panel, BorderLayout.EAST);
+				
+	}
 	
 	
 	private class newListener implements ActionListener //program listens for click on New menu option
